@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -91,6 +92,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -122,7 +124,50 @@
           }
         }
       }
+    },
+    "lss-lib": {
+      "projectType": "library",
+      "root": "projects/lss-lib",
+      "sourceRoot": "projects/lss-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/lss-lib/tsconfig.lib.json",
+            "project": "projects/lss-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lss-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lss-lib/src/test.ts",
+            "tsConfig": "projects/lss-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/lss-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lss-lib/tsconfig.lib.json",
+              "projects/lss-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "lss-core"
+  "defaultProject": "lss-core",
+  "cli": {
+    "analytics": false
+  }
 }
